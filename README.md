@@ -21,13 +21,14 @@ et de la tester.
 Pour commencer, récupérer les fichiers de mon Github: https://github.com/juliencognet/TestUnoWithBDD
 
 0. Récupération des librairies et compilation du projet
+==
 Une fois le projet Maven TestUnoWithBDD-java récupéré, vous devez lancer un maven install sur le
 projet pour récupérer les bibliothèques requises et compiler le projet. 
 Retenez bien le chemin complet de votre répertoire TestUnoWithBDD-java/target/classes.
 
 
 1. Utilisation de Fitnesse
-
+==
 Dans FitnesseUno/, lancer runFitness.bat (ou java -jar fitnesse-standalone.jar.
 Ouvrir un navigateur, puis taper: http://localhost
 Observer les exemples présents dans ExemplesSimplesAvecSlim ou ExemplesSimplesAvecFit.
@@ -44,5 +45,5 @@ décrire vos spécifications par l'exemple et ainsi créer des spécifications e
 
 
 2. Utilisation de Cucumber
-
+==
 A venir ...
