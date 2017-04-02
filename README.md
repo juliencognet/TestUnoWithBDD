@@ -1,6 +1,6 @@
 # TestUnoWithBDD
 
-* Et si nous testions le Behavior Driven Development ? *
+**Et si nous testions le Behavior Driven Development ?**
 
 Ce projet sert de laboratoire pour tester le Behavior Driven Development.
 
