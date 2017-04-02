@@ -1,7 +1,9 @@
 # TestUnoWithBDD
 
+* Et si nous testions le Behavior Driven Development ? *
+
 Ce projet sert de laboratoire pour tester le Behavior Driven Development.
-Et si nous testions le Behavior Driven Development ?
+
 Le behavior driven development est une pratique issue de l’agilité qui vise à plus 
 de collaboration entre les développeurs et leurs key users. Le principe est de mettre 
 en œuvre un langage naturel pour exprimer le comportement du logiciel. On pourra ainsi 
@@ -20,15 +22,15 @@ et de la tester.
 
 Pour commencer, récupérer les fichiers de mon Github: https://github.com/juliencognet/TestUnoWithBDD
 
-0. Récupération des librairies et compilation du projet
-==
+# 0. Récupération des librairies et compilation du projet
+
 Une fois le projet Maven TestUnoWithBDD-java récupéré, vous devez lancer un maven install sur le
 projet pour récupérer les bibliothèques requises et compiler le projet. 
 Retenez bien le chemin complet de votre répertoire TestUnoWithBDD-java/target/classes.
 
 
-1. Utilisation de Fitnesse
-==
+# 1. Utilisation de Fitnesse
+
 Dans FitnesseUno/, lancer runFitness.bat (ou java -jar fitnesse-standalone.jar.
 Ouvrir un navigateur, puis taper: http://localhost
 Observer les exemples présents dans ExemplesSimplesAvecSlim ou ExemplesSimplesAvecFit.
@@ -44,6 +46,6 @@ Ensuite, vous n'avez plus qu'à suivre les instructions des exercices 1 à 4 pou
 décrire vos spécifications par l'exemple et ainsi créer des spécifications exécutables.
 
 
-2. Utilisation de Cucumber
-==
+# 2. Utilisation de Cucumber
+
 A venir ...
