@@ -1,0 +1,58 @@
+---
+Test
+---
+!contents -R2 -g -p -f -h
+!define TEST_SYSTEM {fit}
+!path C:\Users\cognetj\Documents\NetBeansProjects\TestUnoWithBDD\target\classes
+
+!2 Exemple simples avec le système de test FIT
+
+!4 Table simple de décision - multiplication (extends ColumnFixture)
+Dans l'exemple ci-dessous, nous testons le comportement d'une table de décision (ColumnFixture).
+!|fr.cgi.TestUnoWithBDD.SimpleTestsWithFit.SimpleDecisionTableFixture|
+|firstValue|secondValue|multiplyTwoValues?|
+|1 |2 |2|
+|2 |4 |8|
+|3 |3 |9|
+|4 |4 |15|
+
+!4 Query table - nombres premiers (extends RowFixture)
+Dans l'exemple ci-dessous, nous testons le comportement d'une table de décision (ColumnFixture).
+!|fr.cgi.TestUnoWithBDD.SimpleTestsWithFit.PrimeNumbersFixture|
+|primeNumber|
+|2|
+|3|
+|5|
+|7|
+|11|
+
+!4 Query table - nombres premiers pas dans le même ordre (extends RowFixture)
+Dans l'exemple ci-dessous, nous testons le comportement d'une table de décision (ColumnFixture).
+!|fr.cgi.TestUnoWithBDD.SimpleTestsWithFit.PrimeNumbersFixture|
+|primeNumber|
+|2|
+|3|
+|11|
+|5|
+|7|
+
+
+!4 Query table - nombres premiers surplus (extends RowFixture)
+Dans l'exemple ci-dessous, nous testons le comportement d'une table de décision (ColumnFixture).
+!|fr.cgi.TestUnoWithBDD.SimpleTestsWithFit.PrimeNumbersFixture|
+|primeNumber|
+|2|
+|3|
+|5|
+|7|
+|11|
+|13|
+
+!4 Query table - nombres premiers manquants (extends RowFixture)
+Dans l'exemple ci-dessous, nous testons le comportement d'une table de décision (ColumnFixture).
+!|fr.cgi.TestUnoWithBDD.SimpleTestsWithFit.PrimeNumbersFixture|
+|primeNumber|
+|2|
+|3|
+|5|
+|7|

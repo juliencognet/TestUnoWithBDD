@@ -1,0 +1,151 @@
+!contents -R2 -g -p -f -h
+!define TEST_SYSTEM {slim} 
+!path C:\Users\cognetj\Documents\NetBeansProjects\TestUnoWithBDD\target\classes
+|Import|
+|fr.cgi.TestUnoWithBDD.TestUnoWithFitnesse|
+
+[test page]
+!1 Testons le Behavior Driven Development sur un jeu de Uno
+Pour appliquer les principes du Behavior Driven Development, nous proposons de sécuriser une application informatique simulant le fonctionnement du jeu de Uno.
+Pour cela, nous allons utiliser la règle du jeu reprise ci-dessous. 
+Nous y ajouterons différentes tables Fitnesse (table de décision, table de requête et table de script) pour valider le code informatique implémentant certaines règles.
+2 anomalies ont été glissées dans le code du jeu... à vous de les retrouver.
+!2  Règles du jeu du Uno
+!3 But du jeu
+Pour gagner une manche, il faut être le premier joueur à n'avoir plus de cartes en mains. 
+Sur plusieurs manches, le gagnant est le joueur totalisant le moins de points lorsqu'un joueur atteint 500 points.
+!3 Contenu du jeu
+108 réparties comme suit : 
+ * 19 cartes bleues numérotées de 0 à 9 (le 0 en un seul exemplaire)
+ * 19 cartes vertes numérotées de 0 à 9 (le 0 en un seul exemplaire)
+ * 19 cartes rouges numérotées de 0 à 9 (le 0 en un seul exemplaire)
+ * 19 cartes jaunes numérotées de 0 à 9 (le 0 en un seul exemplaire)
+ * 8 cartes +2 (2 de chaque couleur : rouge, vert, jaune, bleu)
+ * 8 cartes inversion (2 de chaque couleur : rouge, vert, jaune, bleu)
+ * 8 cartes passe ton tour (2 de chaque couleur : rouge, vert, jaune, bleu) 
+ * 4 cartes Joker
+ * 4 cartes Super Joker
+
+''Exercice 1 - Dans la table de décision ci-dessous, nous vérifions que le décompte des cartes juste après initialisation du plateau de jeu est correcte.''
+''Pour cela, nous pouvons nous aider de la façade Uno: l'instancier, initialiser le plateau de jeu puis trier les cartes de la pioche ainsi que la carte retournée du talon.''
+|decompte des cartes initial|
+|Type de carte |Couleur de carte | nombre de cartes ?|
+|+2			|Jaune| 8  |
+|Super Joker| | 4  |
+
+!3 Préparation du jeu
+Mélanger soigneusement les cartes et en distribuer 8 à chaque joueur.
+
+''Exercice 2 - Dans le test ci-dessous, nous créons un plateau de jeu avec 4 joueurs (Marc, Damien, Julien et Rémi).
+Nous vérifions que chaque jouer a 8 cartes après distribution.''
+''Pour vérifier que la distribution est correctement effectuée, nous pouvons utiliser cette fois-ci une table de type Query.''
+''Après avoir instancié la façade, il faut initialiser le plateau de jeu, ajouter les joueurs à la partie, puis lancer une partie via distribution aléatoire.''
+''Ensuite, vous pourrez vous aider de la méthode permettant de récupérer le nombre de cartes dans la main de chaque joueur.''
+
+
+Faire une pile avec le reste des cartes, faces cachées : elle constituera la '''pioche'''.
+Retourner la première carte de la pioche, pour la poser face visible à côté de la pioche, afin de commencer le '''talon'''.  
+Cette carte servira comme base de départ.
+
+!3 Déroulement de la partie
+
+Le joueur situé à gauche de celui qui a distribué les cartes commence à jouer. 
+Il doit recouvrir la carte supérieure du talon par une carte de la même couleur, ou portant le même numéro ou le même symbole que celle-ci. 
+Par exemple, si la carte supérieure du talon est un 7 rouge, il peut jouer n'importe quelle carte rouge ou un 7 de n'importe quelle couleur.  
+Il peut également jouer une carte Joker.
+
+Si le joueur ne possède pas de cartes lui offrant une de ces possibilités, il doit alors tirer la carte supérieure de la pioche.
+Si cette carte peut être jouée, il doit la poser sur le talon, mais si cette carte ne peut pas être jouée, il passe son tour.
+Lorsqu'un joueur joue son avant-dernière carte, il doit immédiatement annoncer à haute voix « UNO » pour indiquer à ses adversaires qu'il n'a plus qu'une seule carte en main. 
+S'il l'oublie, et qu'un de ses adversaires s'en aperçoit et le lui fait remarquer, il doit alors tirer 2 cartes de pénalité dans la pioche.
+Quand le joueur pose sa dernière carte, il doit crier « fin de jeu », le cas échéant il pioche 2 cartes et continue de jouer.
+À son tour, il est permis de ne pas jouer, même si l'on possède une carte jouable.  
+Il faut alors tirer une carte de la pioche.  Si elle est « jouable », celle-ci peut alors être jouée immédiatement.
+Le joueur qui s'est débarrassé le premier de toutes ses cartes est le vainqueur de la manche.  
+On établit les scores de cette manche (voir chapitre Score) et on engage alors la manche suivante.
+
+
+''Exercice 4 - Nous proposons maintenant de simuler une partie grâce à une table de type script
+Grâce à la façade Uno, vous pourrez :
+ * Initialiser une partie à 4 joueurs
+ * Déclarer les joueurs, 
+ * Lancer une partie sans distribution
+ * Donner des cartes précises aux joueurs
+ * Tester au fur à mesure le nombre de cartes de la pioche, du talon, de la main des joueurs
+ * Valider qu'un joueur ne peut pas jouer avant son tour
+ * Valider qu'un joueur joue une carte qu'il possède réellement
+ * Afficher la carte visible au sommet du talon
+ * Valider qu'un joueur pose une carte cohérente sur le talon
+Attention, la façade Uno ne sait pas gérer correctement les cartes spéciales (+2, Joker, Super Joker, Passe, Inversion) et la fin de partie.
+''
+
+
+
+!3 Conventions
+!4 Le donneur :
+Au début de chaque manche, chaque joueur tire une carte au hasard parmi les cartes chiffres. 
+Celui qui a le chiffre le plus élevé distribue les cartes. 
+Le joueur situé immédiatement à sa gauche commence à jouer.
+
+!4 Le talon :
+La première carte de la pioche est posée face visible à côté de la pioche, afin de commencer le talon. 
+Cette carte sert de base de départ.  
+Si c'est une carte spéciale, certaines conventions particulières sont applicables (voir chapitre suivant).
+
+!3 Cartes spéciales
+Voici leur signification et les effets qu'elles produisent :
+!4 La carte « +2 » 
+Lorsque cette carte est jouée, le joueur suivant doit piocher 2 cartes et passer son tour (sauf si celui-ci n'a plus de carte). 
+Cette carte ne peut être jouée que sur une carte de la même couleur ou une autre carte +2. 
+Si cette carte est retournée en début de jeu, la même règle s'applique. 
+Cette carte ne permet pas de stopper les autres cartes +2 en remettant une pour que l'autre pioche plus de cartes. 
+Exemple : si quelqu'un met un +2, l'autre ne peut pas en mettre un autre, doit piocher 2 cartes et passer son tour.
+
+!4 La carte « Inversion »
+Lorsque cette carte est jouée, le sens du jeu change (si le jeu évoluait vers la gauche, il doit désormais évoluer vers la droite, et vice versa). 
+Cette carte ne peut être jouée que sur une carte de la même couleur ou une autre carte Inversion. 
+Si cette carte est retournée en début de jeu, le donneur joue en premier, puis le jeu continue vers la droite au lieu de la gauche.
+
+!4 La carte « Passer / Passe ton tour »
+Lorsque cette carte est jouée, le joueur suivant doit passer son tour. Cette carte ne peut être jouée que sur une carte de même couleur ou sur une carte « Passer / Passe ton tour ». 
+Si cette carte est retournée en début de jeu, le joueur à gauche du donneur passe son tour et c'est au joueur suivant de commencer.
+
+!4 La carte « Joker »
+Le joueur qui dépose cette carte peut choisir la couleur de la carte suivante (il annoncera son choix en jouant la carte), qui peut être la couleur déjà demandée. 
+Si c'est la première carte du talon, le donneur choisira alors la couleur de départ.
+Une telle carte peut être jouée après n'importe quelle autre carte.
+
+!4 La carte « +4 » ou « Super Joker »
+Carte « +4 » : 
+Le joueur suivant de celui ou celle qui a posé la carte « +4 » doit prendre 4 cartes (tirées dans la pioche). Il passe son tour. 
+Carte « Super Joker » : 
+Le joueur qui a posé la carte « Super Joker » doit demander une couleur (bleu, jaune, vert ou rouge).
+Il est cependant interdit de contrer ce coup, l'adversaire ne peut pas poser un "+2" ou un "+4", et peut se mettre à la fin. 
+
+Il est autorisé de poser le Super joker que lorsqu'on est bloqué et on n'a pas le choix
+
+!4 Le "Doublon"
+On a le droit de jouer plusieurs cartes dans le même tour si celles-ci ont le même chiffre .
+Une carte "inversion"ou "passe" ne peut pas être posée deux fois d'affilée par la même personne, si vous êtes plus de deux à jouer.
+
+!4 Fin d'une manche
+On doit annoncer « UNO », lorsqu'on n'a plus qu'une carte en main, par exemple, en jouant son avant-dernière carte, avant qu'elle ne soit posée sur le talon. 
+Si l'on oublie de faire cette annonce à ce moment-là, on risque d'être pénalisé par ses adversaires 
+si l'un d'entre eux le remarque avant que le joueur suivant ne joue (c'est-à-dire joue sa carte ou tire une carte de la pioche). 
+Il est interdit de finir par une combinaison de cartes en un mouvement (jeu à deux joueurs) ou en utilisant une carte spéciale (changement de sens, interdiction de jouer, +2, +4) ; 
+le joueur doit dans tous les cas annoncer « UNO » avant de poser sa dernière carte et ne pas oublier de le répéter après avoir pioché une carte ou être revenu à une carte.
+
+Si la pioche est épuisée avant la fin d'une manche, le talon sera mélangé (sauf la dernière carte, qui servira de continuité). 
+Si la dernière carte est une carte joker, le joueur qui doit la jouer devra tirer 2 cartes.
+
+Lorsque l'un des joueurs n'a plus de carte, la manche est terminée. 
+Le calcul du score consiste à comptabiliser les points pour chacun des perdants, et zéro pour le gagnant. 
+Le joueur qui a le moins de points à l'issue d'un certain nombre de manches est le vainqueur.
+ * une carte chiffre vaut sa valeur faciale ;
+ * une carte « Inversion », « Passer » (« Interdit de jouer ») ou « +2 » vaut  20 points ;
+ * une carte « Joker » ou « +4 » (« Super Joker ») vaut 50 points.
+ 
+''Exercice 3 - Nous proposons de valider ici la valeur des cartes. Pour cela, nous pouvons utiliser à nouveau une table de décision.''
+''Grâce à la façade Uno, vous pouvez instancier une carte suivant son type, sa couleur et son numéro, puis utiliser la méthode getValeurPoints de la carte pour en estimer sa valeur.''
+ 
+ 
