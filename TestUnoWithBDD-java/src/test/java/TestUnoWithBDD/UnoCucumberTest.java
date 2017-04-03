@@ -1,5 +1,6 @@
 package TestUnoWithBDD;
 
+import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 import org.junit.runner.RunWith;
 
@@ -8,6 +9,7 @@ import org.junit.runner.RunWith;
  * @author cognetj
  */
 @RunWith(Cucumber.class)
+@CucumberOptions(plugin={"html:target/cucumber-html","pretty:target/cucumber.txt"})
 public class UnoCucumberTest {
     
 }
